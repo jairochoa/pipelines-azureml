@@ -37,7 +37,7 @@ steps:
 - task: AzureCLI@1
   displayName: 'Register model'
   inputs:
-    azureSubscription: ''
+    azureSubscription: 'Jairo_Conection_DEVOPS'
     scriptLocation: inlineScript
     inlineScript: 'az ml model register -n mymodel -p sklearn_regression_model.pkl -t model.json'
 
@@ -46,11 +46,11 @@ steps:
   inputs:
     azureSubscription: 'Jairo_Conection_DEVOPS'
     scriptLocation: inlineScript
-    inlineScript: 'az ml model deploy -n jairo_acicicd -f model.json --ic inferenceConfig.yml --dc deploymentConfig.yml --overwrite'
+    inlineScript: 'az ml model deploy -n modelo_jairo -f model.json --ic inferenceConfig.yml --dc deploymentConfig.yml --overwrite'
 
 - task: AzureCLI@1
   displayName: 'Delete deployed service'
   inputs:
     azureSubscription: 'Jairo_Conection_DEVOPS'
     scriptLocation: inlineScript
-    inlineScript: 'az ml service delete -n jairo_acicicd'
+    inlineScript: 'az ml service delete -n modelo_jairo'
